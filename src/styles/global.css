@@ -1,0 +1,214 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/jetbrains-mono';
+
+/* Class-based dark mode: the inline script in Base.astro sets html.dark before first paint. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f5f6fb;
+  --surface: #ffffff;
+  --surface-2: #eef0f8;
+  --ink: #14152b;
+  --muted: #555a78;
+  --line: #e1e4f0;
+  --primary: #5146e8;
+  --primary-ink: #ffffff;
+  --primary-soft: #ebe9ff;
+  --accent: #0b7f72;
+  --accent-soft: #dcf3ef;
+  --tag: #ffcf4a;
+  --tag-ink: #3b2a00;
+  --paper: #fffdf8;
+  --paper-ink: #24252f;
+  --paper-muted: #6c6d78;
+  --glow: rgba(81, 70, 232, 0.18);
+  --shadow: 0 1px 2px rgba(20, 21, 43, 0.06), 0 12px 32px -12px rgba(20, 21, 43, 0.18);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0d0e1c;
+  --surface: #15162a;
+  --surface-2: #1c1e36;
+  --ink: #eceefe;
+  --muted: #a4a8c8;
+  --line: #272a45;
+  --primary: #8b84ff;
+  --primary-ink: #0d0e1c;
+  --primary-soft: #23214a;
+  --accent: #36c9b4;
+  --accent-soft: #11302d;
+  --tag: #ffcf4a;
+  --tag-ink: #3b2a00;
+  --paper: #f6f3ea;
+  --paper-ink: #24252f;
+  --paper-muted: #6c6d78;
+  --glow: rgba(139, 132, 255, 0.22);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -16px rgba(0, 0, 0, 0.7);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-tag: var(--tag);
+  --color-tag-ink: var(--tag-ink);
+  --color-paper: var(--paper);
+  --color-paper-ink: var(--paper-ink);
+  --color-paper-muted: var(--paper-muted);
+
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Inter Variable', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', monospace;
+
+  --shadow-card: var(--shadow);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header height, so anchored headings are not hidden under it. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-ink);
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 400px) {
+    .container-page {
+      padding-inline: 1.25rem;
+    }
+  }
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      transform 0.15s ease,
+      background-color 0.15s ease,
+      box-shadow 0.15s ease,
+      color 0.15s ease;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: var(--primary-ink);
+    box-shadow: 0 8px 20px -8px var(--glow);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 10px 28px -8px var(--primary);
+  }
+  .btn-ghost {
+    color: var(--ink);
+    border: 1px solid var(--line);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    background: var(--surface-2);
+  }
+  .btn-whatsapp {
+    background: #128c4a;
+    color: #ffffff;
+  }
+  .btn-whatsapp:hover {
+    background: #0e7a40;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    font-size: clamp(2rem, 4.2vw, 3rem);
+    text-wrap: balance;
+  }
+
+  /* Thermal-receipt paper: the page's signature element. */
+  .receipt {
+    position: relative;
+    background: var(--paper);
+    color: var(--paper-ink);
+    font-family: var(--font-mono);
+    --tooth: 9px;
+    mask:
+      conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(var(--tooth) * 2)
+        var(--tooth) repeat-x,
+      linear-gradient(#000 0 0) top / 100% calc(100% - var(--tooth) + 0.5px) no-repeat;
+  }
+  .receipt-rule {
+    border: 0;
+    border-top: 2px dashed color-mix(in srgb, var(--paper-ink) 25%, transparent);
+  }
+}

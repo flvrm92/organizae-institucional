@@ -1,0 +1,164 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { WHATSAPP_URL } from '../config/site';
+
+const items = [
+  { qty: 2, name: 'Camiseta básica P', total: '119,80' },
+  { qty: 1, name: 'Bolsa de palha', total: '89,90' },
+  { qty: 1, name: 'Brinco dourado', total: '34,90' },
+];
+---
+
+<section id="inicio" class="relative isolate overflow-hidden">
+  <!-- Ambient glow behind the hero -->
+  <div
+    aria-hidden="true"
+    class="hero-glow pointer-events-none absolute -top-40 left-1/2 -z-10 h-[38rem] w-[60rem] -translate-x-1/2 rounded-full opacity-70 blur-3xl"
+  >
+  </div>
+
+  <div class="container-page grid items-center gap-14 pb-20 pt-12 sm:pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10 lg:pb-28 lg:pt-20">
+    <div>
+      <p class="eyebrow mb-5">Sistema de gestão de lojas</p>
+      <h1 class="font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-balance sm:text-6xl lg:text-[4.1rem]">
+        Vendas, estoque e caixa da sua loja{' '}
+        <span class="relative whitespace-nowrap text-primary">
+          no mesmo lugar.
+          <svg aria-hidden="true" viewBox="0 0 300 16" preserveAspectRatio="none" class="absolute -bottom-2 left-0 h-3 w-full text-tag">
+            <path d="M3 11c60-7 140-9 294-4" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"></path>
+          </svg>
+        </span>
+      </h1>
+      <p class="mt-7 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+        O Organizae é um sistema online para quem tem loja física: registre vendas em segundos, saiba o que
+        tem na prateleira e feche o caixa sabendo exatamente quanto entrou. Sem planilha, sem caderno, sem
+        instalar nada.
+      </p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener" class="btn btn-whatsapp h-13 px-7 text-base">
+          <WhatsAppIcon class="h-5 w-5" />
+          Falar no WhatsApp
+        </a>
+        <a href="#como-funciona" class="btn btn-ghost h-13 px-7 text-base">Ver como funciona</a>
+      </div>
+      <ul class="mt-9 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[0.8125rem] text-muted">
+        <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span>100% online</li>
+        <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span>Computador e celular</li>
+        <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span>Equipe com vários usuários</li>
+      </ul>
+    </div>
+
+    <!-- Signature: a sale "printing" as a thermal receipt -->
+    <figure class="relative mx-auto w-full max-w-[23rem] lg:mr-0" aria-label="Exemplo de cupom de venda registrado no Organizae">
+      <div class="receipt-wrap">
+        <div class="receipt receipt-print px-7 pb-10 pt-7 text-[0.8125rem] leading-relaxed">
+          <div class="text-center">
+            <p class="font-bold tracking-[0.2em]">SUA LOJA</p>
+            <p class="text-paper-muted">Venda nº 0142 · 25/11 · 14:32</p>
+          </div>
+          <hr class="receipt-rule my-4" />
+          <ul class="space-y-1.5">
+            {
+              items.map((i) => (
+                <li class="flex gap-2">
+                  <span class="text-paper-muted">{i.qty}x</span>
+                  <span class="flex-1 truncate">{i.name}</span>
+                  <span class="tabular-nums">{i.total}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <hr class="receipt-rule my-4" />
+          <div class="flex items-baseline justify-between text-base font-bold">
+            <span>TOTAL</span><span class="tabular-nums">R$ 244,60</span>
+          </div>
+          <div class="mt-2 space-y-1 text-paper-muted">
+            <div class="flex justify-between"><span>Pix</span><span class="tabular-nums">144,60</span></div>
+            <div class="flex justify-between"><span>Cartão de crédito</span><span class="tabular-nums">100,00</span></div>
+          </div>
+          <hr class="receipt-rule my-4" />
+          <ul class="space-y-1">
+            <li class="flex justify-between"><span>Estoque</span><span class="font-semibold text-[#0b7f72]">baixado ✓</span></li>
+            <li class="flex justify-between"><span>Caixa · Ana</span><span class="font-semibold text-[#0b7f72]">lançado ✓</span></li>
+          </ul>
+          <div aria-hidden="true" class="barcode mx-auto mt-6 h-10 w-4/5"></div>
+        </div>
+      </div>
+
+      <!-- Price-tag sticker -->
+      <div
+        aria-hidden="true"
+        class="tag-sticker absolute -left-3 -top-4 rotate-[-8deg] rounded-md bg-tag px-3.5 py-2 font-mono text-xs font-bold uppercase tracking-wider text-tag-ink shadow-lg sm:-left-10"
+      >
+        Venda em 3 cliques
+      </div>
+
+      <!-- Floating cash-closing chip -->
+      <div
+        aria-hidden="true"
+        class="float-chip absolute -bottom-8 -right-2 w-52 rounded-2xl border border-line bg-surface p-3.5 shadow-card sm:-right-8"
+      >
+        <p class="font-mono text-[0.6875rem] uppercase tracking-wider text-muted">Fechamento do caixa</p>
+        <p class="mt-2 text-xs text-muted">Esperado × contado</p>
+        <p class="whitespace-nowrap text-lg font-semibold tabular-nums">R$ 1.240,00</p>
+        <span class="mt-1.5 inline-block rounded-full bg-accent-soft px-2 py-0.5 text-xs font-semibold text-accent">sem diferença</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero-glow {
+    background: radial-gradient(closest-side, var(--glow), transparent 70%);
+  }
+  .receipt-wrap {
+    filter: drop-shadow(0 24px 40px rgb(20 21 43 / 0.22)) drop-shadow(0 2px 4px rgb(20 21 43 / 0.08));
+    transform: rotate(2deg);
+  }
+  :global(.dark) .receipt-wrap {
+    filter: drop-shadow(0 24px 48px rgb(0 0 0 / 0.6));
+  }
+  .receipt-print {
+    animation: print 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+  @keyframes print {
+    from {
+      clip-path: inset(0 0 100% 0);
+      transform: translateY(-24px);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+      transform: none;
+    }
+  }
+  .tag-sticker {
+    animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s both;
+  }
+  .float-chip {
+    animation: rise 0.6s ease-out 1.8s both;
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: rotate(-8deg) scale(0.6);
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+  .barcode {
+    background: repeating-linear-gradient(
+      90deg,
+      var(--paper-ink) 0 2px,
+      transparent 2px 4px,
+      var(--paper-ink) 4px 5px,
+      transparent 5px 8px,
+      var(--paper-ink) 8px 11px,
+      transparent 11px 12px
+    );
+    opacity: 0.85;
+  }
+</style>
