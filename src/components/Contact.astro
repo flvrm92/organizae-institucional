@@ -1,0 +1,62 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { WHATSAPP_URL, WHATSAPP_MESSAGE } from '../config/site';
+---
+
+<section id="fale-conosco" class="py-20 sm:py-28">
+  <div class="container-page">
+    <div class="contact-panel relative isolate overflow-hidden rounded-[2rem] px-6 py-14 sm:px-12 sm:py-20">
+      <div class="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+        <div>
+          <p class="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-white/75">Fale conosco</p>
+          <h2 class="section-title text-white">Quer ver o Organizae funcionando na sua loja?</h2>
+          <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/85">
+            Chame a gente no WhatsApp. Respondemos suas dúvidas, mostramos o sistema e deixamos o seu acesso
+            pronto para começar.
+          </p>
+          <div class="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener"
+              class="btn h-14 bg-white px-8 text-base text-[#0e5f34] shadow-xl hover:bg-white/90"
+            >
+              <WhatsAppIcon class="h-6 w-6 text-[#128c4a]" />
+              Conversar no WhatsApp
+            </a>            
+          </div>
+        </div>
+
+        <!-- Preview of the message that opens in WhatsApp -->
+        <div aria-hidden="true" class="mx-auto w-full max-w-sm rounded-3xl bg-[#efeae2] p-4 shadow-2xl">
+          <div class="flex items-center gap-3 rounded-2xl bg-[#075e54] px-4 py-3 text-white">
+            <span class="grid h-9 w-9 place-items-center rounded-full bg-white/15 font-display font-bold">O</span>
+            <div>
+              <p class="text-sm font-semibold">Organizae</p>
+              <p class="text-xs text-white/70">online</p>
+            </div>
+          </div>
+          <div class="mt-4 ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-[#d9fdd3] px-3.5 py-2.5 text-[0.9375rem] leading-snug text-[#111b21] shadow-sm">
+            {WHATSAPP_MESSAGE}
+            <span class="mt-1 block text-right text-[0.6875rem] text-[#667781]">agora ✓✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-panel {
+    background:
+      radial-gradient(60rem 30rem at 110% -10%, rgb(15 148 132 / 0.55), transparent 60%),
+      radial-gradient(40rem 30rem at -10% 120%, rgb(124 58 237 / 0.45), transparent 60%),
+      #3f35c9;
+  }
+  :global(.dark) .contact-panel {
+    background:
+      radial-gradient(60rem 30rem at 110% -10%, rgb(54 201 180 / 0.35), transparent 60%),
+      radial-gradient(40rem 30rem at -10% 120%, rgb(139 132 255 / 0.35), transparent 60%),
+      #23206b;
+  }
+</style>

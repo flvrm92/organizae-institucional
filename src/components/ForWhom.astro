@@ -1,0 +1,67 @@
+---
+const segments = [
+  'Moda e acessórios',
+  'Presentes e variedades',
+  'Cosméticos e perfumaria',
+  'Calçados e bolsas',
+  'Papelaria',
+  'Utilidades para casa',
+  'Artigos infantis',
+  'Lojas de bairro',
+];
+
+const pains = [
+  {
+    before: 'As vendas ficam anotadas no caderno ou numa planilha que só você entende.',
+    after: 'Cada venda fica registrada com itens, pagamentos e cliente, e dá para consultar depois.',
+  },
+  {
+    before: 'Você só descobre que um produto acabou quando o cliente pede.',
+    after: 'O estoque baixa a cada venda e o sistema avisa quando um item está acabando.',
+  },
+  {
+    before: 'No fim do dia, o dinheiro da gaveta não bate e ninguém sabe por quê.',
+    after: 'Cada operador tem o próprio caixa, e o fechamento mostra a diferença por forma de pagamento.',
+  },
+];
+---
+
+<section id="para-quem-e" class="py-20 sm:py-28">
+  <div class="container-page">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <div>
+        <p class="eyebrow mb-4">Para quem é</p>
+        <h2 class="section-title">Feito para o lojista que atende no balcão</h2>
+        <p class="mt-5 text-lg leading-relaxed text-muted">
+          O Organizae foi pensado para lojas físicas de pequeno e médio porte que precisam de controle sem
+          complicação: o dono que também está no caixa, a equipe pequena que reveza o atendimento.
+        </p>
+        <ul class="mt-8 flex flex-wrap gap-2.5" aria-label="Tipos de loja">
+          {
+            segments.map((s) => (
+              <li class="rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium">{s}</li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="space-y-4">
+        <p class="font-display text-xl font-bold tracking-tight">Se isso parece com a sua loja…</p>
+        {
+          pains.map((p) => (
+            <div class="grid overflow-hidden rounded-3xl border border-line bg-surface sm:grid-cols-2">
+              <div class="p-6">
+                <p class="font-mono text-xs font-semibold uppercase tracking-wider text-muted">Hoje</p>
+                <p class="mt-2 leading-relaxed">{p.before}</p>
+              </div>
+              <div class="border-t border-line bg-accent-soft/60 p-6 sm:border-l sm:border-t-0">
+                <p class="font-mono text-xs font-semibold uppercase tracking-wider text-accent">Com o Organizae</p>
+                <p class="mt-2 leading-relaxed">{p.after}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

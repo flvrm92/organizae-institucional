@@ -1,0 +1,45 @@
+---
+interface Props {
+  class?: string;
+  /** Show the wordmark next to the symbol. */
+  wordmark?: boolean;
+  wordmarkClass?: string;
+}
+const { class: className = '', wordmark = true, wordmarkClass = '' } = Astro.props;
+const gid = `oz-g-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<span class:list={['inline-flex items-center gap-2', className]}>
+  <svg viewBox="0 0 64 64" class="h-8 w-8 shrink-0" aria-hidden="true">
+    <defs>
+      <linearGradient id={gid} x1="10" y1="8" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#5146e8"></stop>
+        <stop offset="1" stop-color="#0f9484"></stop>
+      </linearGradient>
+    </defs>
+    <path
+      d="M23 25v-6.5a9 9 0 0 1 18 0V25"
+      fill="none"
+      stroke="currentColor"
+      class="text-primary"
+      stroke-width="5"
+      stroke-linecap="round"></path>
+    <path
+      d="M12.6 24.5A3 3 0 0 1 15.6 21.5h32.8a3 3 0 0 1 3 3l-2.3 28.3a5 5 0 0 1-5 4.6H19.9a5 5 0 0 1-5-4.6Z"
+      fill={`url(#${gid})`}></path>
+    <path
+      d="M23.5 39.5l6 6 11.5-12.5"
+      fill="none"
+      stroke="#fff"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+  {
+    wordmark && (
+      <span class:list={['font-display font-extrabold tracking-tight text-ink', wordmarkClass || 'text-[1.375rem]']}>
+        Organizae
+      </span>
+    )
+  }
+</span>
